@@ -23,6 +23,8 @@ let actualCode = '(' + function () {
         labelSet[label] = true;
     }
 
+    let usedTestSlot = "TestSlot3";
+
     let categorySet = {
         "Companion": true,
         "Weapon": true,
@@ -50,7 +52,7 @@ let actualCode = '(' + function () {
 
                     for (const candidate of category["possessions"]) {
                         if (candidate.name in labelSet && !(candidate.id in equippedSet)) {
-                            candidate.category = "TestSlot2";
+                            candidate.category = usedTestSlot;
                         }
                     }
                 }
@@ -77,11 +79,19 @@ let actualCode = '(' + function () {
             if (mutation.type === "childList"
                  && mutation.removedNodes.length > 0
                  && mutation.target.nodeName.toLowerCase() === "li") {
+
+                var emptyChildren = [];
                 for (const child of mutation.target.parentElement.children) {
-                    if (child.children.length === 0) {
-                        child.className += " u-visually-hidden"
+                    if (!child.hasChildNodes()) {
+                        emptyChildren.push(child);
                     }
                 }
+
+                let itemList = mutation.target.parentElement;
+                emptyChildren.forEach(child => {
+                    child.remove();
+                    itemList.appendChild(child);
+                })
             }
         })
     })
@@ -96,19 +106,31 @@ let actualCode = '(' + function () {
                             continue;
                         }
 
-                        if (group.firstChild.firstChild.textContent === "TestSlot2") {
-                            let header = group.firstChild.firstChild;
-                            header.textContent = "Cats, Assorted";
+                        let headers = group.getElementsByTagName("h2");
+                        if (headers.length === 0) {
+                            continue;
+                        }
 
-                            group.firstChild.children[1].firstChild.className = "";
-                            for (const child of group.firstChild.children[1].children[1].children) {
-                                if (child.children.length === 0) {
-                                    child.className += " u-visually-hidden";
+                        if (headers[0].textContent === usedTestSlot) {
+                            headers[0].textContent = "Cats, Assorted";
+
+                            let itemList = group.getElementsByTagName("ul")[0];
+                            let equippedContainer = group.getElementsByClassName("equipment-group__equipment-slot-container")[0];
+                            equippedContainer.className = "";
+
+                            var emptyChildren = [];
+                            for (const child of itemList.children) {
+                                if (!child.hasChildNodes()) {
+                                    emptyChildren.push(child);
                                 }
                             }
+                            emptyChildren.forEach(child => {
+                                child.remove();
+                                itemList.appendChild(child)
+                            })
 
                             itemSectionObserver.disconnect();
-                            testSlotObserver.observe(group.firstChild.children[1], {childList: true, subtree: true})
+                            testSlotObserver.observe(itemList, {childList: true, subtree: true})
                             break;
                         }
                     }
