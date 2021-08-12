@@ -1,7 +1,6 @@
 let actualCode = '(' + function () {
     const VISUALLY_HIDDEN_STYLE = "u-visually-hidden";
 
-    // TODO: Fill it out with the remaining felines from wiki.
     const CAT_LABEL_SET = {
         "Sebastian the Nocturnal Smotherer": true,
         "Calliope the Yowler": true,
@@ -19,6 +18,16 @@ let actualCode = '(' + function () {
         "Benvolio the Bacon Thief": true,
         "Freya, Scourge of Fragile Ornaments": true,
         "Midnight Matriarch": true,
+        "Midnight Matriarch of the Menagerie of Roses": true,
+        "Bengal Tigress": true,
+        "Extravagantly-Titled Tigress": true,
+        "Tomb-Lion": true,
+        "Parabolan Panther": true,
+        "Parabolan Kitten": true,
+        "Wretched Mog": true,
+        "Princeling of the Wakeful Court": true,
+        "Morally and Physically Flexible Rubbery Cat": true,
+        "A Short-Tempered Shorthair": true,
     };
 
     const USED_TEST_SLOT = "TestSlot3";

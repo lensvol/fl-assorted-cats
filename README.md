@@ -35,3 +35,7 @@ _NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your 
 * Safari extension
 * Horatio displayed more prominently
 * "Whitelist" by FBG fiat
+
+## Special thanks
+
+* [rahv7](https://www.reddit.com/user/rahv7/) - for adding missing felines to the list!
