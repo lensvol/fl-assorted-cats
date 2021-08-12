@@ -11,10 +11,10 @@
       "128": "/images/kitty-icon-128.png"
     }
   },
-  "permissions": ["https://www.fallenlondon.com/possessions"],
+  "permissions": ["https://www.fallenlondon.com/*"],
   "content_scripts": [
     {
-      "matches": ["https://www.fallenlondon.com/possessions"],
+      "matches": ["https://www.fallenlondon.com/*"],
       "js": ["content.js"],
       "run_at": "document_start"
     }
