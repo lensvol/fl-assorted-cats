@@ -1,6 +1,6 @@
 {
   "name": "FL Assorted Cats",
-  "description": "Proudly display your feline companions in a separate 'Possessions' section!",
+  "description": "Proudly display your feline companions in \"Fallen London\"!",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
@@ -11,7 +11,6 @@
       "128": "/images/kitty-icon-128.png"
     }
   },
-  "permissions": ["https://www.fallenlondon.com/*"],
   "content_scripts": [
     {
       "matches": ["https://www.fallenlondon.com/*"],
