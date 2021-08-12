@@ -35,6 +35,7 @@ _NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your 
 * Safari extension
 * Horatio displayed more prominently
 * "Whitelist" by FBG fiat
+* Mobile versions (Firefox for Android / iOS Safari)
 
 ## Special thanks
 
