@@ -1,35 +1,35 @@
 let actualCode = '(' + function () {
     const VISUALLY_HIDDEN_STYLE = "u-visually-hidden";
 
-    const CAT_LABEL_SET = {
-        "Sebastian the Nocturnal Smotherer": true,
-        "Calliope the Yowler": true,
-        "Love-Sickened Seneschal": true,
-        "The Minister of War": true,
-        "The Minister of Enigmas": true,
-        "The Minister of Culture": true,
-        "The Minister of State Affairs": true,
-        "Starveling Cat": true,
-        "Pink-Painted Cat": true,
-        "Horatio, Finest of His Lineage": true,
-        "Rubbery Feline": true,
-        "August Feline": true,
-        "Corresponding Ocelot": true,
-        "Benvolio the Bacon Thief": true,
-        "Freya, Scourge of Fragile Ornaments": true,
-        "Midnight Matriarch": true,
-        "Midnight Matriarch of the Menagerie of Roses": true,
-        "Bengal Tigress": true,
-        "Extravagantly-Titled Tigress": true,
-        "Tomb-Lion": true,
-        "Parabolan Panther": true,
-        "Parabolan Kitten": true,
-        "Wretched Mog": true,
-        "Princeling of the Wakeful Court": true,
-        "Morally and Physically Flexible Rubbery Cat": true,
-        "A Short-Tempered Shorthair": true,
-        "Lyon Pursuivant of Arms Extraordinary": true,
-    };
+    const CAT_LABELS = [
+        "Sebastian the Nocturnal Smotherer",
+        "Calliope the Yowler",
+        "Love-Sickened Seneschal",
+        "The Minister of War",
+        "The Minister of Enigmas",
+        "The Minister of Culture",
+        "The Minister of State Affairs",
+        "Starveling Cat",
+        "Pink-Painted Cat",
+        "Horatio, Finest of His Lineage",
+        "Rubbery Feline",
+        "August Feline",
+        "Corresponding Ocelot",
+        "Benvolio the Bacon Thief",
+        "Freya, Scourge of Fragile Ornaments",
+        "Midnight Matriarch",
+        "Midnight Matriarch of the Menagerie of Roses",
+        "Bengal Tigress",
+        "Extravagantly-Titled Tigress",
+        "Tomb-Lion",
+        "Parabolan Panther",
+        "Parabolan Kitten",
+        "Wretched Mog",
+        "Princeling of the Wakeful Court",
+        "Morally and Physically Flexible Rubbery Cat",
+        "A Short-Tempered Shorthair",
+        "Lyon Pursuivant of Arms Extraordinary",
+    ];
 
     const USED_TEST_SLOT = "TestSlot3";
 
@@ -83,8 +83,13 @@ let actualCode = '(' + function () {
                     if (!(category.name in categorySet)) continue;
 
                     for (const candidate of category["possessions"]) {
-                        if (candidate.name in CAT_LABEL_SET && !(candidate.id in equippedSet)) {
-                            candidate.category = USED_TEST_SLOT;
+                        if (candidate.id in equippedSet) continue;
+                        
+                        for (const label of CAT_LABELS) {
+                            if (candidate.name.includes(label)) {
+                                candidate.category = USED_TEST_SLOT;
+                                break;
+                            }
                         }
                     }
                 }
