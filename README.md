@@ -27,6 +27,15 @@ _NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your 
 4. Click **Load Temporary Add-On**
 5. Select any file in the folder where you unzipped the archive.
 
+### Opera
+
+1. Download **.ZIP** file from the "Releases" page.
+2. Unzip that file somewhere on your computer.
+3. Open **opera:extensions** page.
+4. Enable "Developer Mode" (top right corner).
+6. Click **Load unpacked** and select the folder where you unzipped the file.
+
+
 ## TODO
 
 * Publish in Chrome Web Store / Mozilla Add-on Store
