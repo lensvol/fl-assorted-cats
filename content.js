@@ -38,6 +38,7 @@ let actualCode = '(' + function () {
         "Hat",
         "Boots",
         "Clothing",
+        "Affiliation",
     ]
 
     function modifyResponse(response) {
