@@ -1,6 +1,7 @@
 let actualCode = '(' + function () {
+    const DONE = 4
     const VISUALLY_HIDDEN_STYLE = "u-visually-hidden";
-
+    const USED_TEST_SLOT = "TestSlot3";
     const CAT_LABELS = [
         "Sebastian the Nocturnal Smotherer",
         "Calliope the Yowler",
@@ -30,17 +31,14 @@ let actualCode = '(' + function () {
         "A Short-Tempered Shorthair",
         "Lyon Pursuivant of Arms Extraordinary",
     ];
-
-    const USED_TEST_SLOT = "TestSlot3";
-
-    let categorySet = {
-        "Companion": true,
-        "Weapon": true,
-        "Gloves": true,
-        "Hat": true,
-        "Boots": true,
-        "Clothing": true,
-    }
+    let INTERESTING_CATEGORIES = [
+        "Companion",
+        "Weapon",
+        "Gloves",
+        "Hat",
+        "Boots",
+        "Clothing",
+    ]
 
     function modifyResponse(response) {
         /*
@@ -56,7 +54,7 @@ let actualCode = '(' + function () {
         Here we make use of the "test slots" that are left in the "Possesions" tab, praying that FBG
         will not decide to remove them in the future.
          */
-        if (this.readyState === 4) {
+        if (this.readyState === DONE) {
             // TODO: Proper URL matching
             if (response.currentTarget.responseURL.includes("api/character/myself")) {
                 let data = JSON.parse(response.target.responseText);
@@ -70,20 +68,20 @@ let actualCode = '(' + function () {
                  equipped items so we can skip patching them.
                  */
 
-                let equippedItems = document.getElementsByClassName("equipped-item");
-                let equippedSet = {};
-                for (const item of equippedItems) {
-                    let qualityId = Number.parseInt(item.attributes["data-quality-id"].value);
-                    equippedSet[qualityId] = true;
+                let equippedItemSlots = document.getElementsByClassName("equipped-item");
+                let equippedItems = [];
+                for (const slot of equippedItemSlots) {
+                    let qualityId = Number.parseInt(slot.attributes["data-quality-id"].value);
+                    equippedItems.push(qualityId);
                 }
 
                 for (const category of data["possessions"]) {
 
                     // Only some of the categories can contain cats, so we'll just skip others to save time.
-                    if (!(category.name in categorySet)) continue;
+                    if (!INTERESTING_CATEGORIES.includes(category.name)) continue;
 
                     for (const candidate of category["possessions"]) {
-                        if (candidate.id in equippedSet) continue;
+                        if (candidate.id in equippedItems) continue;
                         
                         for (const label of CAT_LABELS) {
                             if (candidate.name.includes(label)) {
