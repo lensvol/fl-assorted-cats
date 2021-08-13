@@ -28,6 +28,7 @@ let actualCode = '(' + function () {
         "Princeling of the Wakeful Court": true,
         "Morally and Physically Flexible Rubbery Cat": true,
         "A Short-Tempered Shorthair": true,
+        "Lyon Pursuivant of Arms Extraordinary": true,
     };
 
     const USED_TEST_SLOT = "TestSlot3";
