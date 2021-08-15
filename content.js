@@ -56,8 +56,7 @@ let actualCode = '(' + function () {
         will not decide to remove them in the future.
          */
         if (this.readyState === DONE) {
-            // TODO: Proper URL matching
-            if (response.currentTarget.responseURL.includes("api/character/myself")) {
+            if (/\/api\/character\/myself\/?$/.test(response.currentTarget.responseURL)) {
                 let data = JSON.parse(response.target.responseText);
 
                 /*
