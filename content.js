@@ -183,11 +183,6 @@ let actualCode = '(' + function () {
                                 }
                             }
                             itemContentsObserver.observe(itemList, {childList: true, subtree: true})
-
-
-                            // Since we already found the test slot and processed it, it is no longer
-                            // necessary to monitor changes on the entire document.
-                            testSlotObserver.disconnect();
                             break;
                         }
                     }
