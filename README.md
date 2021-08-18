@@ -1,6 +1,6 @@
 # FL Assorted Cats
 
-[![License](https://img.shields.io/github/license/lensvol/fl-assorted-cats)](https://github.com/lensvol/fl-assorted-cats/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/lensvol/fl-assorted-cats)](https://github.com/lensvol/fl-assorted-cats/blob/master/LICENSE) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/lensvol/fl-assorted-cats) ![Chrome Web Store](https://img.shields.io/chrome-web-store/v/bekpmddpdfbginlkmdcmhjfeejbmddpb) ![Mozilla Add-on](https://img.shields.io/amo/v/fl-assorted-cats) 
 
 ![screenshot](https://raw.githubusercontent.com/lensvol/fl-assorted-cats/master/screenshot.png)
 
@@ -8,7 +8,12 @@ Simple browser extension for [Fallen London](https://www.fallenlondon.com/) that
 
 _NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your own risk!_ 
 
-## Installation
+Grab it here:
+* [Releases page](https://github.com/lensvol/fl-assorted-cats/releases) (most up-to-date, see below for instructions)
+* [Mozilla Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/fl-assorted-cats/)
+* [Chrome Web Store](https://chrome.google.com/webstore/detail/fl-assorted-cats/bekpmddpdfbginlkmdcmhjfeejbmddpb)
+
+## Manual installation
 
 ### Chrome
 
@@ -38,11 +43,11 @@ _NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your 
 
 ## TODO
 
-* Publish in Chrome Web Store / Mozilla Add-on Store
 * Configurable section title
-* Support for more cats
+* Configurable list of inhabitants
 * Safari extension
 * Horatio displayed more prominently
+* "Placeholders" for equipped items
 * "Whitelist" by FBG fiat
 * Mobile versions (Firefox for Android / iOS Safari)
 
