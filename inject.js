@@ -15,6 +15,7 @@
         "Pink-Painted Cat",
         "Horatio, Finest of His Lineage",
         "Grubby Kitten",
+        "Gustav the Ankle Weaver",
         "Rubbery Feline",
         "August Feline",
         "Corresponding Ocelot",
