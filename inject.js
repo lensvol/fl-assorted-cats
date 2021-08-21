@@ -14,6 +14,7 @@
         "Starveling Cat",
         "Pink-Painted Cat",
         "Horatio, Finest of His Lineage",
+        "Grubby Kitten",
         "Rubbery Feline",
         "August Feline",
         "Corresponding Ocelot",
