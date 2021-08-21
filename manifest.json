@@ -2,7 +2,7 @@
   "name": "FL Assorted Cats",
   "description": "Proudly display your feline companions in \"Fallen London\"!",
   "version": "1.4",
-  "manifest_version": 3,
+  "manifest_version": 2,
   "content_scripts": [
     {
       "matches": ["https://www.fallenlondon.com/*"],
@@ -10,13 +10,19 @@
       "run_at": "document_start"
     }
   ],
+  "browser_action": {
+    "default_icon": {
+      "16": "/images/kitty-icon-16.png",
+      "32": "/images/kitty-icon-32.png",
+      "48": "/images/kitty-icon-48.png",
+      "128": "/images/kitty-icon-128.png"
+    }
+  },
   "icons": {
     "16": "/images/kitty-icon-16.png",
     "32": "/images/kitty-icon-32.png",
     "48": "/images/kitty-icon-48.png",
     "128": "/images/kitty-icon-128.png"
   },
-  "web_accessible_resources": [
-    {"resources": ["inject.js"], "matches":  ["https://www.fallenlondon.com/*"]}
-  ]
+  "web_accessible_resources": ["inject.js"]
 }
