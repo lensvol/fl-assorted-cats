@@ -151,9 +151,11 @@
     it is not being added as it is, but as a part of a larger 'div'.
      */
     let testSlotObserver = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-            mutation.addedNodes.forEach(function (node) {
-                // TODO: Target those layers more precisely
+        for (let m = 0; m < mutations.length; m++) {
+            let mutation = mutations[m];
+
+            for (let n = 0; n < mutation.addedNodes.length; n++) {
+                let node = mutation.addedNodes[n];
                 if (node.nodeName.toLowerCase() === "div") {
                     let equipmentGroups = node.getElementsByClassName("equipment-group-list__item");
                     for (const group of equipmentGroups) {
@@ -184,13 +186,13 @@
                                     child.classList.add(VISUALLY_HIDDEN_STYLE)
                                 }
                             }
-                            itemContentsObserver.observe(itemList, {childList: true, subtree: true})
-                            break;
+                            itemContentsObserver.observe(itemList, {childList: true, subtree: true});
+                            return;
                         }
                     }
                 }
-            });
-        });
+            }
+        }
     });
 
     testSlotObserver.observe(document, {childList: true, subtree: true});
