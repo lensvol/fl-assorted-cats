@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FL Assorted Cats</title>
+    <style>
+        input[type=text], select {
+            width: 100%;
+            padding: 4px 4px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            padding: 4px 4px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+  <form id="slotSettingsForm">
+    <label for="slotName">Slot title:</label>
+
+    <input id="slotName" type="text">
+    <label for="slotItems">Items to put there:</label>
+    <textarea id="slotItems" rows="16" cols="60"></textarea>
+    <input type="submit" value="Save settings">
+    <script src='popup.js'></script>
+  </form>
+</body>
+</html>

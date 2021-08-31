@@ -3,7 +3,7 @@
 
     const VISUALLY_HIDDEN_STYLE = "u-visually-hidden";
     const USED_TEST_SLOT = "TestSlot3";
-    const CAT_LABELS = [
+    const DEFAULT_CAT_LABELS = [
         "Sebastian the Nocturnal Smotherer",
         "Calliope the Yowler",
         "Love-Sickened Seneschal",
@@ -34,15 +34,25 @@
         "A Short-Tempered Shorthair",
         "Lyon Pursuivant of Arms Extraordinary",
     ];
-    let INTERESTING_CATEGORIES = [
+    const DEFAULT_SLOT_NAME = "Cats, Assorted";
+    const INTERESTING_CATEGORIES = [
         "Companion",
         "Weapon",
         "Gloves",
         "Hat",
         "Boots",
+        "Destiny",
+        "Ship",
+        "Spouse",
+        "Club",
         "Clothing",
         "Affiliation",
-    ]
+        "Home Comfort",
+        "Transportation",
+    ];
+
+    let slotName = DEFAULT_SLOT_NAME;
+    let catLabels = DEFAULT_CAT_LABELS;
 
     function modifyResponse(response) {
         /*
@@ -86,7 +96,7 @@
                     for (const candidate of category["possessions"]) {
                         if (candidate.id in equippedItems) continue;
 
-                        for (const label of CAT_LABELS) {
+                        for (const label of catLabels) {
                             if (candidate.name.includes(label)) {
                                 candidate.category = USED_TEST_SLOT;
                                 break;
@@ -118,8 +128,6 @@
             return original_function.apply(this, arguments);
         };
     }
-
-    XMLHttpRequest.prototype.open = openBypass(XMLHttpRequest.prototype.open);
 
     /*
     For some reason, items equipped from the test slot leave ugly "holes behind", which
@@ -168,7 +176,7 @@
                         let header = group.getElementsByTagName("h2")[0];
 
                         if (header.textContent === USED_TEST_SLOT) {
-                            header.textContent = "Cats, Assorted";
+                            header.textContent = slotName;
 
                             let itemList = group.getElementsByTagName("ul")[0];
                             /*
@@ -196,5 +204,12 @@
         }
     });
 
+    document.addEventListener("settings", (event) => {
+        console.log("Data:", event.detail);
+        slotName = event.detail.slotName;
+        catLabels = event.detail.items;
+    });
+    document.dispatchEvent(new CustomEvent("injected"));
     testSlotObserver.observe(document, {childList: true, subtree: true});
+    XMLHttpRequest.prototype.open = openBypass(XMLHttpRequest.prototype.open);
 }())

@@ -3,6 +3,13 @@
   "description": "Proudly display your feline companions in \"Fallen London\"!",
   "version": "2.0",
   "manifest_version": 2,
+  "permissions": ["storage"],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": ["https://www.fallenlondon.com/*"],
@@ -11,6 +18,7 @@
     }
   ],
   "browser_action": {
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "/images/kitty-icon-16.png",
       "32": "/images/kitty-icon-32.png",
