@@ -3,8 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
+
         const newSlotName = form.elements.slotName.value;
-        const newItems = form.elements.slotItems.value.split("\n");
+        const newItems = form.elements.slotItems.value
+            .split("\n")
+            .map(word => word.trim())
+            .filter(word => word);
 
         chrome.storage.local.set({
             settings: {
