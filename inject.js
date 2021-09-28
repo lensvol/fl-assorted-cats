@@ -1,60 +1,60 @@
-(function() {
+(function () {
     const DONE = 4
 
-    const VISUALLY_HIDDEN_STYLE = "u-visually-hidden";
-    const USED_TEST_SLOT = "TestSlot3";
+    const VISUALLY_HIDDEN_STYLE = 'u-visually-hidden';
+    const USED_TEST_SLOT = 'TestSlot3';
     const DEFAULT_CAT_LABELS = [
-        "Sebastian the Nocturnal Smotherer",
-        "Calliope the Yowler",
-        "Love-Sickened Seneschal",
-        "The Minister of War",
-        "The Minister of Enigmas",
-        "The Minister of Culture",
-        "The Minister of State Affairs",
-        "Starveling Cat",
-        "Pink-Painted Cat",
-        "Horatio, Finest of His Lineage",
-        "Grubby Kitten",
-        "Gustav the Ankle Weaver",
-        "Rubbery Feline",
-        "August Feline",
-        "Corresponding Ocelot",
-        "Benvolio the Bacon Thief",
-        "Freya, Scourge of Fragile Ornaments",
-        "Midnight Matriarch",
-        "Midnight Matriarch of the Menagerie of Roses",
-        "Bengal Tigress",
-        "Extravagantly-Titled Tigress",
-        "Tomb-Lion",
-        "Parabolan Panther",
-        "Parabolan Kitten",
-        "Wretched Mog",
-        "Princeling of the Wakeful Court",
-        "Morally and Physically Flexible Rubbery Cat",
-        "A Short-Tempered Shorthair",
-        "Lyon Pursuivant of Arms Extraordinary",
+        'Sebastian the Nocturnal Smotherer',
+        'Calliope the Yowler',
+        'Love-Sickened Seneschal',
+        'The Minister of War',
+        'The Minister of Enigmas',
+        'The Minister of Culture',
+        'The Minister of State Affairs',
+        'Starveling Cat',
+        'Pink-Painted Cat',
+        'Horatio, Finest of His Lineage',
+        'Grubby Kitten',
+        'Gustav the Ankle Weaver',
+        'Rubbery Feline',
+        'August Feline',
+        'Corresponding Ocelot',
+        'Benvolio the Bacon Thief',
+        'Freya, Scourge of Fragile Ornaments',
+        'Midnight Matriarch',
+        'Midnight Matriarch of the Menagerie of Roses',
+        'Bengal Tigress',
+        'Extravagantly-Titled Tigress',
+        'Tomb-Lion',
+        'Parabolan Panther',
+        'Parabolan Kitten',
+        'Wretched Mog',
+        'Princeling of the Wakeful Court',
+        'Morally and Physically Flexible Rubbery Cat',
+        'A Short-Tempered Shorthair',
+        'Lyon Pursuivant of Arms Extraordinary'
     ];
-    const DEFAULT_SLOT_NAME = "Cats, Assorted";
+    const DEFAULT_SLOT_NAME = 'Cats, Assorted';
     const INTERESTING_CATEGORIES = [
-        "Companion",
-        "Weapon",
-        "Gloves",
-        "Hat",
-        "Boots",
-        "Destiny",
-        "Ship",
-        "Spouse",
-        "Club",
-        "Clothing",
-        "Affiliation",
-        "Home Comfort",
-        "Transportation",
+        'Companion',
+        'Weapon',
+        'Gloves',
+        'Hat',
+        'Boots',
+        'Destiny',
+        'Ship',
+        'Spouse',
+        'Club',
+        'Clothing',
+        'Affiliation',
+        'Home Comfort',
+        'Transportation'
     ];
 
     let slotName = DEFAULT_SLOT_NAME;
     let catLabels = DEFAULT_CAT_LABELS;
 
-    function modifyResponse(response) {
+    function modifyResponse (response) {
         /*
         The idea itself is pretty simple: trick FL UI to put specific items into specific slots
         by modifying data that is returned from 'api/character/myself' endpoint.
@@ -70,7 +70,7 @@
          */
         if (this.readyState === DONE) {
             if (/\/api\/character\/myself\/?$/.test(response.currentTarget.responseURL)) {
-                let data = JSON.parse(response.target.responseText);
+                const data = JSON.parse(response.target.responseText);
 
                 /*
                  Here is the tricky part: this response does not contain any indication that if
@@ -81,19 +81,18 @@
                  equipped items so we can skip patching them.
                  */
 
-                let equippedItemSlots = document.getElementsByClassName("equipped-item");
-                let equippedItems = [];
+                const equippedItemSlots = document.getElementsByClassName('equipped-item');
+                const equippedItems = [];
                 for (const slot of equippedItemSlots) {
-                    let qualityId = Number.parseInt(slot.attributes["data-quality-id"].value);
+                    const qualityId = Number.parseInt(slot.attributes['data-quality-id'].value);
                     equippedItems.push(qualityId);
                 }
 
-                for (const category of data["possessions"]) {
-
+                for (const category of data.possessions) {
                     // Only some of the categories can contain cats, so we'll just skip others to save time.
                     if (!INTERESTING_CATEGORIES.includes(category.name)) continue;
 
-                    for (const candidate of category["possessions"]) {
+                    for (const candidate of category.possessions) {
                         if (candidate.id in equippedItems) continue;
 
                         for (const label of catLabels) {
@@ -106,7 +105,7 @@
                 }
 
                 // Need to do this in order to reset "read-only" status on responseText attribute
-                Object.defineProperty(this, "responseText", {writable: true});
+                Object.defineProperty(this, 'responseText', { writable: true });
                 this.responseText = JSON.stringify(data);
             }
         }
@@ -122,9 +121,9 @@
 
      Solution taken from https://stackoverflow.com/a/41566077
      */
-    function openBypass(original_function) {
+    function openBypass (original_function) {
         return function (method, url, async) {
-            this.addEventListener("readystatechange", modifyResponse);
+            this.addEventListener('readystatechange', modifyResponse);
             return original_function.apply(this, arguments);
         };
     }
@@ -138,12 +137,11 @@
 
     Conversely, if their contents are restored due to item being unequipped, we will show them again.
     */
-    let itemContentsObserver = new MutationObserver(function (mutations) {
+    const itemContentsObserver = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
-            if (mutation.type === "childList"
-                && mutation.target.nodeName.toLowerCase() === "li") {
-
-                let alreadyHidden = mutation.target.classList.contains(VISUALLY_HIDDEN_STYLE);
+            if (mutation.type === 'childList' &&
+                mutation.target.nodeName.toLowerCase() === 'li') {
+                const alreadyHidden = mutation.target.classList.contains(VISUALLY_HIDDEN_STYLE);
 
                 if (mutation.removedNodes.length > 0) {
                     mutation.target.classList.add(VISUALLY_HIDDEN_STYLE)
@@ -159,26 +157,26 @@
     so mutation observer will not trigger on filled equipment list. That is because technically
     it is not being added as it is, but as a part of a larger 'div'.
      */
-    let testSlotObserver = new MutationObserver(function (mutations) {
+    const testSlotObserver = new MutationObserver(function (mutations) {
         for (let m = 0; m < mutations.length; m++) {
-            let mutation = mutations[m];
+            const mutation = mutations[m];
 
             for (let n = 0; n < mutation.addedNodes.length; n++) {
-                let node = mutation.addedNodes[n];
-                if (node.nodeName.toLowerCase() === "div") {
-                    let equipmentGroups = node.getElementsByClassName("equipment-group-list__item");
+                const node = mutation.addedNodes[n];
+                if (node.nodeName.toLowerCase() === 'div') {
+                    const equipmentGroups = node.getElementsByClassName('equipment-group-list__item');
                     for (const group of equipmentGroups) {
                         // Skip groups without any items in them
                         if (group.children.length === 0) {
                             continue;
                         }
 
-                        let header = group.getElementsByTagName("h2")[0];
+                        const header = group.getElementsByTagName('h2')[0];
 
                         if (header.textContent === USED_TEST_SLOT) {
                             header.textContent = slotName;
 
-                            let itemList = group.getElementsByTagName("ul")[0];
+                            const itemList = group.getElementsByTagName('ul')[0];
                             /*
                             Since nothing can be equipped in the test slot, we'll just hide the container
                             for the currently equipped item.
@@ -186,8 +184,8 @@
                             TODO: Make it Horatio's seat of honor?
                             */
 
-                            let equippedContainer = group.getElementsByClassName("equipment-group__equipment-slot-container")[0];
-                            equippedContainer.className = "";
+                            const equippedContainer = group.getElementsByClassName('equipment-group__equipment-slot-container')[0];
+                            equippedContainer.className = '';
 
                             // As items in that group are already pre-filled, our observer will not trigger yet.
                             for (const child of itemList.children) {
@@ -195,7 +193,7 @@
                                     child.classList.add(VISUALLY_HIDDEN_STYLE)
                                 }
                             }
-                            itemContentsObserver.observe(itemList, {childList: true, subtree: true});
+                            itemContentsObserver.observe(itemList, { childList: true, subtree: true });
                             return;
                         }
                     }
@@ -204,11 +202,11 @@
         }
     });
 
-    document.addEventListener("FL_AC_settings", (event) => {
+    document.addEventListener('FL_AC_settings', (event) => {
         slotName = event.detail.slotName;
         catLabels = event.detail.items;
     });
-    document.dispatchEvent(new CustomEvent("FL_AC_injected"));
-    testSlotObserver.observe(document, {childList: true, subtree: true});
+    document.dispatchEvent(new CustomEvent('FL_AC_injected'));
+    testSlotObserver.observe(document, { childList: true, subtree: true });
     XMLHttpRequest.prototype.open = openBypass(XMLHttpRequest.prototype.open);
 }())
