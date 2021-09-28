@@ -46,6 +46,6 @@ chrome.runtime.onInstalled.addListener(function(details){
                     "Lyon Pursuivant of Arms Extraordinary",
                 ]
             }
-        }, () => {console.log("Default settings saved into DB")});
+        }, () => {console.log("[FL Assorted Cats] Default settings saved into DB")});
     }
 });

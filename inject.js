@@ -204,12 +204,11 @@
         }
     });
 
-    document.addEventListener("settings", (event) => {
-        console.log("Data:", event.detail);
+    document.addEventListener("FL_AC_settings", (event) => {
         slotName = event.detail.slotName;
         catLabels = event.detail.items;
     });
-    document.dispatchEvent(new CustomEvent("injected"));
+    document.dispatchEvent(new CustomEvent("FL_AC_injected"));
     testSlotObserver.observe(document, {childList: true, subtree: true});
     XMLHttpRequest.prototype.open = openBypass(XMLHttpRequest.prototype.open);
 }())
