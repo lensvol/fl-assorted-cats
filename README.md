@@ -43,12 +43,9 @@ Grab it here:
 
 ## TODO
 
-* Configurable section title
-* Configurable list of inhabitants
 * Safari extension
 * Horatio displayed more prominently
 * "Placeholders" for equipped items
-* "Whitelist" by FBG fiat
 * Mobile versions (Firefox for Android / iOS Safari)
 
 ## Special thanks
