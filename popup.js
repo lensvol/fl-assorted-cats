@@ -1,8 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('slotSettingsForm');
 
+    function setSubmitButtonState(isDisabled) {
+        const submitButton = document.getElementById("submitBtn");
+        if (submitButton) {
+            if (isDisabled) {
+                submitButton.setAttribute("disabled", isDisabled);
+            } else {
+                submitButton.removeAttribute("disabled");
+            }
+        }
+    }
+
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        setSubmitButtonState(true);
 
         const newSlotName = form.elements.slotName.value;
         const newItems = form.elements.slotItems.value
@@ -16,13 +28,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 items: newItems
             }
         }, () => {
-            const settingsEvent = new CustomEvent('FL_AC_settings', {
-                detail: {
-                    slotName: newSlotName,
-                    items: newItems
-                }
-            });
-            document.dispatchEvent(settingsEvent);
+            const statusIndicator = document.getElementById("statusIndicator");
+
+            if (chrome.runtime.lastError) {
+                statusIndicator.textContent = "Error occurred while saving your settings. Please try again :(";
+            } else {
+                statusIndicator.textContent = "New settings were saved successfully! Please reload the FL tab.";
+                const settingsEvent = new CustomEvent('FL_AC_settings', {
+                    detail: {
+                        slotName: newSlotName,
+                        items: newItems
+                    }
+                });
+                document.dispatchEvent(settingsEvent);
+            }
+
+            setSubmitButtonState(false);
         });
     });
 
