@@ -6,6 +6,7 @@
   "permissions": ["storage"],
   "background": {
     "scripts": [
+      "presets.js",
       "background.js"
     ],
     "persistent": false

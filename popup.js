@@ -1,13 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('slotSettingsForm');
+    const presetDropdown = document.getElementById('presetSelect');
+    const loadPresetBtn = document.getElementById('loadPresetBtn');
 
-    function setSubmitButtonState(isDisabled) {
-        const submitButton = document.getElementById("submitBtn");
+    for (const presetName of SLOT_CONTENTS_PRESETS.keys()) {
+        const option = document.createElement('option');
+        option.value = presetName;
+        option.innerText = presetName;
+        presetDropdown.appendChild(option);
+    }
+
+    presetDropdown.value = DEFAULT_PRESET_KEY;
+
+    loadPresetBtn.addEventListener('click', (event) => {
+        const presetKey = presetDropdown.options[presetDropdown.selectedIndex].text;
+        form.elements.slotName.value = presetKey;
+        form.elements.slotItems.value = SLOT_CONTENTS_PRESETS.get(presetKey).join('\n');
+    });
+
+    function setSubmitButtonState (isDisabled) {
+        const submitButton = document.getElementById('submitBtn');
         if (submitButton) {
             if (isDisabled) {
-                submitButton.setAttribute("disabled", isDisabled);
+                submitButton.setAttribute('disabled', isDisabled);
             } else {
-                submitButton.removeAttribute("disabled");
+                submitButton.removeAttribute('disabled');
             }
         }
     }
@@ -28,12 +45,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 items: newItems
             }
         }, () => {
-            const statusIndicator = document.getElementById("statusIndicator");
+            const statusIndicator = document.getElementById('statusIndicator');
 
             if (chrome.runtime.lastError) {
-                statusIndicator.textContent = "Error occurred while saving your settings. Please try again :(";
+                statusIndicator.textContent = 'Error occurred while saving your settings. Please try again :(';
             } else {
-                statusIndicator.textContent = "New settings were saved successfully! Please reload the FL tab.";
+                statusIndicator.textContent = 'New settings were saved successfully! Please reload the FL tab.';
                 const settingsEvent = new CustomEvent('FL_AC_settings', {
                     detail: {
                         slotName: newSlotName,

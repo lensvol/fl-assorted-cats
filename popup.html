@@ -25,6 +25,9 @@
     </style>
 </head>
 <body>
+  Preset: <select id="presetSelect" style="display: inline-block; width: auto"></select>
+  <button id="loadPresetBtn">Load</button>
+
   <form id="slotSettingsForm">
     <label for="slotName">Slot title:</label>
 
@@ -35,6 +38,7 @@
       <input type="submit" value="Save settings" id="submitBtn">
       <p><b id="statusIndicator"></b></p>
     </div>
+    <script src='presets.js'></script>
     <script src='popup.js'></script>
   </form>
 </body>
