@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const presetDropdown = document.getElementById('presetSelect');
     const loadPresetBtn = document.getElementById('loadPresetBtn');
 
+    let contentsChanged = false;
+
     for (const presetName of SLOT_CONTENTS_PRESETS.keys()) {
         const option = document.createElement('option');
         option.value = presetName;
@@ -12,10 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     presetDropdown.value = DEFAULT_PRESET_KEY;
 
-    loadPresetBtn.addEventListener('click', (event) => {
+    function loadSelectedPreset() {
         const presetKey = presetDropdown.options[presetDropdown.selectedIndex].text;
         form.elements.slotName.value = presetKey;
         form.elements.slotItems.value = SLOT_CONTENTS_PRESETS.get(presetKey).join('\n');
+    }
+
+    loadPresetBtn.addEventListener('click', (event) => {
+        if (!contentsChanged) {
+            loadSelectedPreset();
+            contentsChanged = false;
+        } else {
+            if (confirm("You have not saved your changes! Do you still want to load selected preset?")) {
+                loadSelectedPreset();
+                contentsChanged = false;
+            }
+        }
+    });
+
+    form.elements.slotItems.addEventListener('change', (event) => {
+        contentsChanged = true;
     });
 
     function setSubmitButtonState (isDisabled) {
