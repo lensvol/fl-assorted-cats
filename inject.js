@@ -2,7 +2,7 @@
     const DONE = 4
 
     const VISUALLY_HIDDEN_STYLE = 'u-visually-hidden';
-    const USED_TEST_SLOT = 'TestSlot3';
+    const USED_SLOT = 'Burden';
     const DEFAULT_CAT_LABELS = [
         'Sebastian the Nocturnal Smotherer',
         'Calliope the Yowler',
@@ -97,7 +97,7 @@
 
                         for (const label of catLabels) {
                             if (candidate.name.includes(label)) {
-                                candidate.category = USED_TEST_SLOT;
+                                candidate.category = USED_SLOT;
                                 break;
                             }
                         }
@@ -129,7 +129,7 @@
     }
 
     /*
-    For some reason, items equipped from the test slot leave ugly "holes behind", which
+    For some reason, items equipped leave ugly "holes behind", which
     are actually empty <li> nodes.
 
     As a matter of convenience, we listen to the changes on those elements and hide them
@@ -173,7 +173,7 @@
 
                         const header = group.getElementsByTagName('h2')[0];
 
-                        if (header.textContent === USED_TEST_SLOT) {
+                        if (header.textContent === USED_SLOT) {
                             header.textContent = slotName;
 
                             const itemList = group.getElementsByTagName('ul')[0];
