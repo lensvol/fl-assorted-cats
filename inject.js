@@ -48,7 +48,9 @@
         'Clothing',
         'Affiliation',
         'Home Comfort',
-        'Transportation'
+        'Transportation',
+        'Treasure',
+        'Burden',
     ];
 
     let slotName = DEFAULT_SLOT_NAME;
