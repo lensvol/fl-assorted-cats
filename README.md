@@ -6,8 +6,6 @@
 
 Simple browser extension for [Fallen London](https://www.fallenlondon.com/) that makes it easy to proudly display your feline companions on the "Possessions" tab.
 
-_NB: This extension is **not** yet whitelisted by Failbetter Games. Use at your own risk!_ 
-
 Grab it here:
 * [Releases page](https://github.com/lensvol/fl-assorted-cats/releases) (most up-to-date, see below for instructions)
 * [Mozilla Add-on Store](https://addons.mozilla.org/en-US/firefox/addon/fl-assorted-cats/)
@@ -18,7 +16,7 @@ Grab it here:
 ### Chrome
 
 1. Download **.ZIP** file from the "Releases" page.
-2. Unzip that file somewhere on your computer. 
+2. Unpack that file somewhere on your computer. 
 3. Open _Chrome_.
 4. Go to **chrome://extensions** and 
 5. Check the box for "Developer Mode" (top right corner).
@@ -27,7 +25,7 @@ Grab it here:
 ### Mozilla Firefox
 
 1. Download **.ZIP** file from the "Releases" page.
-2. Unzip that file somewhere on your computer. 
+2. Unpack that file somewhere on your computer. 
 3. Open **about:debugging** page.
 4. Click **Load Temporary Add-On**
 5. Select any file in the folder where you unzipped the archive.
@@ -35,21 +33,34 @@ Grab it here:
 ### Opera
 
 1. Download **.ZIP** file from the "Releases" page.
-2. Unzip that file somewhere on your computer.
+2. Unpack that file somewhere on your computer.
 3. Open **opera:extensions** page.
 4. Enable "Developer Mode" (top right corner).
 6. Click **Load unpacked** and select the folder where you unzipped the file.
 
+### Safari
+
+1. Get the **.APP.ZIP** file from the "Releases Page"
+2. Unpack that file somewhere on your computer.
+3. Run _"FL Assorted Cats"_ app.
+4. Follow the instructions on your screen.
+
+### Firefox for Mobile Nightly
+
+1. Log-in into your Firefox account.
+2. Go to the [View My Collections](https://addons.mozilla.org/en-US/firefox/collections/) page.
+3. Create a new collection and add "FL Assorted Cats" extension to it.
+4. Follow the [instructions from Android Police](https://www.androidpolice.com/2020/09/30/firefox-for-android-brings-back-general-extensions-support-heres-how-to-set-it-up/).
 
 ## TODO
 
-* Safari extension
 * Horatio displayed more prominently
 * "Placeholders" for equipped items
-* Mobile versions (Firefox for Android / iOS Safari)
+* iOS version
 
 ## Special thanks
 
 * [rahv7](https://www.reddit.com/user/rahv7/) - for adding missing felines to the list!
 * [Kalumniatoris](https://www.reddit.com/user/Kalumniatoris/) - for reporting bugged feline detection!
 * [PM-ME-YOUR-POEMS](https://www.reddit.com/user/PM-ME-YOUR-POEMS/) - for reporting yet another missing cat! 
+* [Saklad5](https://github.com/Saklad5) - for help with packaging extension for Safari!
