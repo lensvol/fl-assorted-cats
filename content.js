@@ -4,10 +4,14 @@ chrome.storage.local.get(['settings'], (result) => {
         console.error('[FL Assorted Cats] Could not load settings from DB, falling back to defaults.');
     } else {
         console.log('[FL Assorted Cats] Settings received:', result.settings)
+
         document.addEventListener('FL_AC_injected', (event) => {
             console.log('[FL Assorted Cats] Request for settings received!');
-            const settingsEvent = new CustomEvent('FL_AC_settings', { detail: result.settings });
-            document.dispatchEvent(settingsEvent);
+
+            window.postMessage({
+                action: 'FL_AC_settings',
+                settings: result.settings
+            }, "https://www.fallenlondon.com");
         }, false);
 
         const s = document.createElement('script');

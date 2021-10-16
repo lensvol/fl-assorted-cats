@@ -204,9 +204,11 @@
         }
     });
 
-    document.addEventListener('FL_AC_settings', (event) => {
-        slotName = event.detail.slotName;
-        catLabels = event.detail.items;
+    window.addEventListener("message", (event) => {
+        if (event.data.action === "FL_AC_settings") {
+            slotName = event.data.settings.slotName;
+            catLabels = event.data.settings.items;
+        }
     });
     document.dispatchEvent(new CustomEvent('FL_AC_injected'));
     testSlotObserver.observe(document, { childList: true, subtree: true });
