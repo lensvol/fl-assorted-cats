@@ -28,7 +28,8 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Princeling of the Wakeful Court',
         'Morally and Physically Flexible Rubbery Cat',
         'A Short-Tempered Shorthair',
-        'Lyon Pursuivant of Arms Extraordinary'
+        'Lyon Pursuivant of Arms Extraordinary',
+        'Inquisitive Lamp-cat'
     ]],
     ['Very Good Boys', [
         'Slavering Dream-Hound',
