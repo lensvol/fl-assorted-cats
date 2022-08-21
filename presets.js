@@ -57,14 +57,6 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'The Great Game',
         'Newly-Born Frost-Moth',
         'What Might Be A Thunderbolt'
-    ]],
-    ['Catch the Neathbow', [
-        'Irrigo-filled Mirrorcatch Box',
-        'Cosmogone-filled Mirrorcatch Box',
-        'Gant-filled Mirrorcatch Box',
-        'Peligin-filled Mirrorcatch Box',
-        'Violant-filled Mirrorcatch Box',
-        'Viric-filled Mirrorcatch Box'
     ]]
 ]);
 
