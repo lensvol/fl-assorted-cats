@@ -186,6 +186,11 @@
                 mutation.target.nodeName.toLowerCase() === 'div' &&
                 mutation.addedNodes.length > 0
             ) {
+                const imageChangeSpinner = mutation.target.querySelector("div[class='loading-image']");
+                if (imageChangeSpinner != null) {
+                    imageChangeSpinner.classList.add(VISUALLY_HIDDEN_STYLE);
+                }
+
                 const trueItemImage = mutation.target.querySelector("img[class*='equipped-item__image']");
                 if (trueItemImage == null) return;
 
