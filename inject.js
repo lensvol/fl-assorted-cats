@@ -246,12 +246,6 @@
                 const node = mutation.addedNodes[n];
 
                 if (node.nodeName.toLowerCase() === 'div') {
-                    const equipmentGroupLists = node.getElementsByClassName('equipment-group-list');
-                    if (equipmentGroupLists.length > 0) {
-                        const groupList = equipmentGroupLists[0];
-                        groupList.appendChild(fauxItemGroup);
-                    }
-
                     const equipmentGroups = node.getElementsByClassName('equipment-group-list__item');
                     for (const group of equipmentGroups) {
                         // Skip groups without any items in them
@@ -276,6 +270,8 @@
 
                             TODO: Make it Horatio's seat of honor?
                             */
+                            group.parentElement.insertBefore(fauxItemGroup, group);
+                            group.parentElement.insertBefore(group, group.parentElement.firstElementChild);
 
                             const equippedContainer = group.getElementsByClassName('equipment-group__equipment-slot-container')[0];
                             if (equippedContainer) {
