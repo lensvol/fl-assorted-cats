@@ -59,6 +59,7 @@
     let trueItemImage = null;
     let trueItemQualityId = null;
 
+    // Automatically generated item group based on the HTML code of item group list element.
     function createFauxItemGroup() {
         const li = document.createElement('li');
         li.classList.add('equipment-group-list__item', VISUALLY_HIDDEN_STYLE);
@@ -180,12 +181,15 @@
         };
     }
 
+    // This observer automatically moves item images recreated by React in the original item slot
+    // into the faux item slot.
     const slotImageObserver = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
             if (mutation.type === 'childList' &&
                 mutation.target.nodeName.toLowerCase() === 'div' &&
                 mutation.addedNodes.length > 0
             ) {
+                // Prevent item change spinner appearing in the "deleted" item slot
                 const imageChangeSpinner = mutation.target.querySelector("div[class='loading-image']");
                 if (imageChangeSpinner != null) {
                     imageChangeSpinner.classList.add(VISUALLY_HIDDEN_STYLE);
@@ -198,9 +202,12 @@
 
                 const fauxEquippedItem = fauxItemGroup.querySelector("div[class*='equipped-item']");
                 if (fauxEquippedItem) {
+                    // FIXME: quality ID transfer is not working at the moment and I cannot be bothered to fix it.
+                    // After all, how often would you change your destiny?
                     fauxEquippedItem.setAttribute("data-quality-id", trueItemQualityId);
                 }
 
+                // Ensure that the old image is removed
                 const swapContainer = fauxItemGroup.querySelector("div[data-item-placeholder]");
                 while (swapContainer.lastElementChild) {
                     swapContainer.removeChild(swapContainer.lastElementChild);
@@ -270,30 +277,40 @@
 
                             TODO: Make it Horatio's seat of honor?
                             */
+
+                            // Place faux item group before the original one
                             group.parentElement.insertBefore(fauxItemGroup, group);
+                            // Place the repurposed item group at the top of the list
                             group.parentElement.insertBefore(group, group.parentElement.firstElementChild);
 
                             const equippedContainer = group.getElementsByClassName('equipment-group__equipment-slot-container')[0];
                             if (equippedContainer) {
                                 equippedContainer.className = "";
 
+                                // Set up observer so that any new image elements are moved to the faux item group
                                 slotImageObserver.observe(equippedContainer, { childList: true, subtree: true });
 
+                                // Remove the currently equipped item image from the original group
                                 trueItemImage = equippedContainer.querySelector("img");
                                 trueItemImage.parentElement.removeChild(trueItemImage);
 
                                 const currentlyEquippedItem = equippedContainer.querySelector("div[class*='equipped-item']");
                                 if (currentlyEquippedItem) {
+                                    // Quality ID associated with the equipped item is set on the slot, not the item image
                                     trueItemQualityId = Number.parseInt(currentlyEquippedItem.attributes['data-quality-id'].value);
+                                    // Hide slot for the currently equipped item
                                     currentlyEquippedItem.classList.add(VISUALLY_HIDDEN_STYLE);
                                 }
 
+                                // Remove any remaining decorations from the hidden item slot
                                 equippedContainer.classList.remove("equipment-group__equipment-slot-container--full");
                                 equippedContainer.classList.remove("equipment-group__equipment-slot-container--empty");
 
+                                // Show the faux item group
                                 fauxItemGroup.classList.remove(VISUALLY_HIDDEN_STYLE);
                                 const fauxEquippedItem = fauxItemGroup.querySelector("div[class*='equipped-item']");
                                 if (fauxEquippedItem) {
+                                    // Transfer quality ID to the faux item slot
                                     fauxEquippedItem.setAttribute("data-quality-id", trueItemQualityId);
                                 }
 
