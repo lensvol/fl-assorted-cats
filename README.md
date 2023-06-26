@@ -4,6 +4,8 @@
 
 ![screenshot](https://raw.githubusercontent.com/lensvol/fl-assorted-cats/master/screenshot.png)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/L4L0D1FN6)
+
 Simple browser extension for [Fallen London](https://www.fallenlondon.com/) that makes it easy to proudly display your feline companions on the "Possessions" tab.
 
 Grab it here:
