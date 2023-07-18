@@ -315,6 +315,9 @@
                                 }
 
                                 const swapContainer = fauxItemGroup.querySelector("div[data-item-placeholder]");
+                                while (swapContainer.lastElementChild) {
+                                    swapContainer.removeChild(swapContainer.lastElementChild);
+                                }
                                 swapContainer.appendChild(trueItemImage);
                             }
 
