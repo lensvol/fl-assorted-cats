@@ -11,6 +11,7 @@
         'The Minister of Enigmas',
         'The Minister of Culture',
         'The Minister of State Affairs',
+        'Starveling Stole',
         'Starveling Cat',
         'Pink-Painted Cat',
         'Horatio, Finest of His Lineage',
@@ -25,14 +26,18 @@
         'Midnight Matriarch of the Menagerie of Roses',
         'Bengal Tigress',
         'Extravagantly-Titled Tigress',
+        'An Uneasy Alliance with an Exiled Tiger',
         'Tomb-Lion',
         'Parabolan Panther',
         'Parabolan Kitten',
+        'Lovingly Be-Ribboned Kitten',
         'Wretched Mog',
         'Princeling of the Wakeful Court',
         'Morally and Physically Flexible Rubbery Cat',
         'A Short-Tempered Shorthair',
-        'Lyon Pursuivant of Arms Extraordinary'
+        'Lyon Pursuivant of Arms Extraordinary',
+        'Inquisitive Lamp-cat',
+        'Feline Pariah',
     ];
     const DEFAULT_SLOT_NAME = 'Cats, Assorted';
     const INTERESTING_CATEGORIES = [
