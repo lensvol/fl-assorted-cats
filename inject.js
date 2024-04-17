@@ -56,6 +56,10 @@
         'Transportation',
         'Treasure',
         'Burden',
+        'Adornment',
+        'Airship',
+        'Crew',
+        'Luggage',
     ];
 
     let slotName = DEFAULT_SLOT_NAME;
