@@ -46,6 +46,7 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Elongated Spindlewolf',
         'Surveilling Spindlewolf',
         'Brachiating Spindlewolf',
+        'Seven-League Spindlewolf',
         'Perspicacious Lurcher'
     ]],
     ['Items of Renown', [
@@ -68,12 +69,14 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Full-Grown Terror Bird',
         'Iron-Toothed Terror Bird',
         'Double-Headed Terror Bird',
+        'Terror Bird Warmount',
         'Birdskin Gloves',
         'Iron-Lung Bagpipes',
         'Aurochs',
         'Carnivorous Aurochs',
         'Dream-dwelling Carnivorous Aurochs',
         'Reflected Minotaur',
+        'Vagrant Oneirotaur',
         'Aurochs-Fur Coat',
         'Skein of Silvered Catgut',
         'Untrained Lyrebird',
@@ -92,12 +95,14 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Acute Squirrel',
         'Acicular Squirrel',
         'Transfixing Squirrel',
+        'Chitinscale Squirrelbeast',
         'Honed Ushanka',
         'Telsonic Signet',
         'Spindlewolf',
         'Elongated Spindlewolf',
         'Surveilling Spindlewolf',
         'Brachiating Spindlewolf',
+        'Seven-League Spindlewolf',
         'Vigilant Chitin-Fur Boots',
         'Russet Brachiator',
         'Unerring Elver',
@@ -119,7 +124,8 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Elegiac Cockatoo',
         'Imminent Falcon',
         'Burbling Wolfhound',
-        'Exuberant Batling'
+        'Exuberant Batling',
+        'Obstreperous Boar'
     ]]
 ]);
 
