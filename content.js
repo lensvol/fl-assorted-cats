@@ -38,7 +38,7 @@
         'Lyon Pursuivant of Arms Extraordinary',
         'Inquisitive Lamp-cat',
         'Feline Pariah',
-        'The Ragged Recusant',
+        'Ragged Recusant',
     ];
     const DEFAULT_SLOT_NAME = 'Cats, Assorted';
     const INTERESTING_CATEGORIES = [
