@@ -66,3 +66,4 @@ Grab it here:
 * [Kalumniatoris](https://www.reddit.com/user/Kalumniatoris/) - for reporting bugged feline detection!
 * [PM-ME-YOUR-POEMS](https://www.reddit.com/user/PM-ME-YOUR-POEMS/) - for reporting yet another missing cat! 
 * [Saklad5](https://github.com/Saklad5) - for help with packaging extension for Safari!
+* [hkosova](https://github.com/hkosova) - for keeping our datasets fresh and relevant! 
