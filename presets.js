@@ -34,7 +34,7 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Lyon Pursuivant of Arms Extraordinary',
         'Inquisitive Lamp-cat',
         'Feline Pariah',
-        'The Ragged Recusant',
+        'Ragged Recusant',
     ]],
     ['Very Good Boys', [
         'Slavering Dream-Hound',
@@ -132,15 +132,17 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Obstreperous Boar',
     ]],
     ['Agents, Secret Agents', [
+        'Clay Breaker',
+        'Enthusiastic Prosector',
+        'Focused Resurrectionist',
+        'Luckless Captain',
+        'Mild-Mannered Mondaine',
+        'Nectared Proprietor',
         'Numeric Nightmare',
         'Perforated Zubmariner',
-        'The Clay Breaker',
-        'The Luckless Captain',
-        'The Mild-Mannered Mondaine',
-        'The Nectared Proprietor',
-        'The Ragged Recusant',
-        'The Silent Partner',
-        'The Unilluminated Mole'
+        'Ragged Recusant',
+        'Silent Partner',
+        'Unilluminated Mole',
     ]]
 ]);
 
