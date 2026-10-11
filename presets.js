@@ -143,6 +143,16 @@ const SLOT_CONTENTS_PRESETS = new Map([
         'Ragged Recusant',
         'Silent Partner',
         'Unilluminated Mole',
+    ]],
+    ['Murder, She Cawed', [
+        'Dazed Raven Advisor',
+        'Dreamy Raven Advisor',
+        'Philosophical Raven Advisor',
+        'Mystic Raven Advisor',
+        'Wary Raven Advisor',
+        'Unscrupulous Raven Advisor',
+        'Devious Raven Advisor',
+        'Flock of Sagacious, Mendacious, and Loquacious Raven Advisors',
     ]]
 ]);
 
