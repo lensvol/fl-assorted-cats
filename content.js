@@ -112,6 +112,25 @@
                 console.debug('[FL Assorted Cats] Saving list of agents for future use...');
                 window.dispatchEvent(new CustomEvent('FL_AC_saveAgents', { detail: { agents: currentAgents } }));
             }
+            if (/\/api\/outfit(\/equip)?\/?$/.test(response.currentTarget.responseURL)) {
+                const data = JSON.parse(response.target.responseText);
+
+                for (const slot of data.slots) {
+                    if (slot.name === USED_SLOT) {
+                        /*
+                        Yet another sleight-of-hand, but who cares at this point? We accidentally break unequipping of
+                        companions which were placed into our "special" slot due to the said slot being used for
+                        things that user cannot really change themselves (e.g. "Destiny"). To work around that
+                        we manually mark that slot as "can be changed" behind the scenes and then handle it on the
+                        "faux" slot ourselves.
+                         */
+                        slot.canChange = true;
+                    }
+                }
+
+                Object.defineProperty(this, 'responseText', { writable: true });
+                this.responseText = JSON.stringify(data);
+            }
             if (/\/api\/character\/myself\/?$/.test(response.currentTarget.responseURL)) {
                 const data = JSON.parse(response.target.responseText);
 
@@ -275,6 +294,30 @@
         return li;
     }
 
+    /*
+    Because we patch response from the server that declares our host category as "unchangeable" to say the opposite,
+    we inadvertently cause game UI to display item slot by restoring various classes to it. To compensate for that
+    our code will watch whether slot gets modified and quietly restore things to how they should be.
+     */
+    const fauxEquipSlotObserver = new MutationObserver((mutations, observer) => {
+        for (const mutation of mutations) {
+            if (mutation.type === 'attributes') {
+                // This is to prevent endless looping because we will change attribute that triggers this same observer.
+                observer.disconnect();
+
+                mutation.target.classList.remove(
+                    'equipment-group__equipment-slot-container--unchangeable',
+                    'equipment-group__equipment-slot-container--full',
+                    'equipment-group__equipment-slot-container--empty',
+                    'equipment-group__equipment-slot-container',
+                );
+
+                // Attach again and wait for the next change
+                observer.observe(mutation.target, {attributes: true});
+            }
+        }
+    });
+
     // This observer automatically moves item images recreated by React in the original item slot
     // into the faux item slot.
     const slotImageObserver = new MutationObserver(function (mutations) {
@@ -398,6 +441,9 @@
                                 // Remove any remaining decorations from the hidden item slot
                                 equippedContainer.classList.remove('equipment-group__equipment-slot-container--full');
                                 equippedContainer.classList.remove('equipment-group__equipment-slot-container--empty');
+                                equippedContainer.classList.remove('equipment-group__equipment-slot-container--unchangeable');
+
+                                fauxEquipSlotObserver.observe(equippedContainer, { attributes: true });
 
                                 // Show the faux item group
                                 fauxItemGroup.classList.remove(VISUALLY_HIDDEN_STYLE);
